@@ -93,3 +93,7 @@ summary(regra_produto_clean)
 
 #Plot
 plot(regra_produto_clean, measure = "support", shading = "confidence", method = "graph", engine = "html")
+
+# Salvando o conjunto de regras como dataframe  e então salvamos em disco
+df1_produto <- as(regra_produto_clean, "data.frame")
+write_xlsx(df1_produto, "df1_produto.xlsx")
