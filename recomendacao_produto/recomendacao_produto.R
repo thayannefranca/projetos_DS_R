@@ -54,6 +54,7 @@ pacote$item03 <- as.factor(pacote$Item03)
 pacote$item04 <- as.factor(pacote$Item04)
 pacote$item05 <- as.factor(pacote$Item05)
 pacote$item06 <- as.factor(pacote$Item06)
+str(pacote)
 
 pacote_split <- split(pacote$Item01,
                       pacote$Item02,
@@ -65,4 +66,13 @@ pacote_split <- split(pacote$Item01,
 
 View(pacote_split)
 
+# Transações
+transacoes <- as(pacote_split, "transactions")
+
+# Vamos verificar as regras de um produto: Dust-Off Compressed Gas 2 pack
+regra_produto <- apriori(transacoes, 
+                         parameter = list(conf = 0.5, minlen = 3),
+                         appearance = list(rhs = "Dust-Off Compressed Gas 2 pack", default = "lhs"))
+
+inspect(head(sort(regra_produto, by = "confidence"), 5))
 
