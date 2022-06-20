@@ -44,5 +44,25 @@ df1_2 <- df1[!grepl("^\\s*$", df1$Item02), ]
 # Número de itens distintos após limpeza
 n_distinct(df1_2)
 
+# Prepara o pacote convertendo as variáveis para o tipo fator 
+#Apenas das 6 primeiras colunas, pois não é uma boa pratica usar todas as colunas
+#Poucos clientes compram mais de 6 produtos
+pacote <- df1_2
+pacote$item01 <- as.factor(pacote$Item01)
+pacote$item02 <- as.factor(pacote$Item02)
+pacote$item03 <- as.factor(pacote$Item03)
+pacote$item04 <- as.factor(pacote$Item04)
+pacote$item05 <- as.factor(pacote$Item05)
+pacote$item06 <- as.factor(pacote$Item06)
+
+pacote_split <- split(pacote$Item01,
+                      pacote$Item02,
+                      pacote$Item03,
+                      pacote$Item04,
+                      pacote$Item05,
+                      pacote$Item06)
+
+
+View(pacote_split)
 
 
