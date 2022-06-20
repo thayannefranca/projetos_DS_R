@@ -90,3 +90,6 @@ regra_produto_clean <- regra_produto[!is.redundant(regra_produto)]
 inspect(head(sort(regra_produto_clean, by = "confidence"), 5))
 
 summary(regra_produto_clean)
+
+#Plot
+plot(regra_produto_clean, measure = "support", shading = "confidence", method = "graph", engine = "html")
