@@ -83,3 +83,10 @@ regra_produto <- apriori(transacoes,
                          appearance = list(rhs = "Dust-Off Compressed Gas 2 pack", default = "lhs"))
 
 inspect(head(sort(regra_produto, by = "confidence"), 5))
+
+# Filtra as regras redundantes
+regra_produto_clean <- regra_produto[!is.redundant(regra_produto)]
+
+inspect(head(sort(regra_produto_clean, by = "confidence"), 5))
+
+summary(regra_produto_clean)
