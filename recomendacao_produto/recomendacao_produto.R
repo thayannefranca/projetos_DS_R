@@ -14,3 +14,35 @@ dados <- read.csv("dataset_bd3.csv")
 dim(dados)
 View(dados)
 summary(dados)
+
+# Separamos as linhas pares das linhas ímpares
+# Linhas impares não tem dados
+linhas_pares <- seq(2, nrow(dados), 2)
+df1 <- dados[linhas_pares, ]
+
+# Verifica se temos valores ausentes no primeiro item de compra
+sum(is.na(df1$Item01))
+
+# Verifica se temos valores ausentes no segundo item de compra
+sum(is.na(df1$Item02))
+
+# Verifica se temos valores ausentes representados por espaço em branco
+which(nchar(trimws(df1$Item01)) == 0)
+which(nchar(trimws(df1$Item02)) == 0)
+
+# Verifica se temos valores ausentes representados por espaço em branco (usando expressão regular)
+grepl("^\\s*$", df1$Item02)
+
+# Número de itens distintos
+n_distinct(df1)
+
+# Vamos trabalhar somente com os registros onde o item 2 não for nulo
+# Se vamos recomendar produtos de clientes que compraram o mesmo produto
+# É necessário o segundo produto
+df1_2 <- df1[!grepl("^\\s*$", df1$Item02), ]
+
+# Número de itens distintos após limpeza
+n_distinct(df1_2)
+
+
+
