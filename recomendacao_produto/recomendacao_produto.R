@@ -76,3 +76,10 @@ regra_produto <- apriori(transacoes,
 
 inspect(head(sort(regra_produto, by = "confidence"), 5))
 
+# Vamos verificar novamente as regras do produto: Dust-Off Compressed Gas 2 pack, 
+# alterando uma das métricas
+regra_produto <- apriori(transacoes,
+                         parameter = list(conf = 0.5, minlen = 3, supp = 0.2, target = "rules"),
+                         appearance = list(rhs = "Dust-Off Compressed Gas 2 pack", default = "lhs"))
+
+inspect(head(sort(regra_produto, by = "confidence"), 5))
