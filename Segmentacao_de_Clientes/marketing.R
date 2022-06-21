@@ -89,3 +89,25 @@ converte_data <- function(x)
 # Executa a função
 dataset$InvoiceDate <- converte_data(dataset)
 View(dataset)
+
+# Função para calcular Recência, Frequência e Valor Monetário
+calcula_rfm <- function(x)
+{
+  z <- x %>% group_by(`Customer ID`) %>%
+    summarise(Recency = as.numeric(date1 - max(InvoiceDate)),
+              Frequncy = n(),
+              Monetary = sum(TotalPrice),
+              primeira_compra = min(InvoiceDate))
+  
+  # Removendo transações com valores acima do 3º Quartil e abaixo do Quartil 1 (removendo outliers)
+  Q1 <- quantile(z$Monetary, .25)
+  Q3 <- quantile(z$Monetary, .75)
+  IQR <- IQR(z$Monetary)
+  z <- subset(z, z$Monetary >= (Q1 - 1.5 * IQR) & z$Monetary <= (Q3 + 1.5 * IQR))
+  
+  return(z)
+}
+
+# Executa a função
+valores_rfm <- calcula_rfm(dataset)
+View(valores_rfm)
