@@ -26,3 +26,12 @@ carrega_dados <- function()
 dados <- carrega_dados()
 dim(dados)
 View(dados)
+
+# Função para checar valores ausentes
+verifica_missing <- function(x)
+{
+  return(colSums(is.na(x)))
+}
+
+# Executa a função
+verifica_missing(dados)
