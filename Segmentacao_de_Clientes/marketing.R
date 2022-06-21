@@ -48,11 +48,29 @@ preprocessa_dados <- function(data1)
   data1 <- na.omit(data1)
   
   # Removemos as linhas da coluna Invoice que contém a letra C (o que significa que este pedido foi cancelado)
-  data1 <- data1[!grepl("C", data1$Invoice), ]
+  data1 <- data1[!grepl("C",data1$Invoice),]
   
   return(data1)
+  
 }
 
 # Executa a função
-dataset <- verifica_missing(dados)
+dataset <- preprocessa_dados(dados)
 View(dataset)
+
+# Verificando a distribuição da variável Total Price
+ggplot(dataset,
+       aes(x = TotalPrice)) +
+  geom_density(fill = "#69b3a2", color = "#e9ecef", alpha = 3.5) +
+  labs(title = 'Distribuição da Variável TotalPrice')
+
+# Número de clientes
+length(dataset$`Customer ID`)
+length(unique(dataset$`Customer ID`))
+
+# Total monetário gasto por cliente
+total_gasto <- dataset %>%
+  group_by(`Customer ID`) %>%
+  summarise(Sum = sum(TotalPrice))
+
+View(total_gasto)
