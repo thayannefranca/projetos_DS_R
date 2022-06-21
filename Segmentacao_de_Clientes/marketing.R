@@ -35,3 +35,24 @@ verifica_missing <- function(x)
 
 # Executa a função
 verifica_missing(dados)
+
+# Vamos apenas excluir os registros com valores ausentes
+
+# Função para limpar e pré-processar os dados
+preprocessa_dados <- function(data1)
+{
+  # Criando uma coluna chamada TotalPrice
+  data1$TotalPrice <- data1$Quantity * data1$Price
+  
+  # Remove registros com valores ausentes
+  data1 <- na.omit(data1)
+  
+  # Removemos as linhas da coluna Invoice que contém a letra C (o que significa que este pedido foi cancelado)
+  data1 <- data1[!grepl("C", data1$Invoice), ]
+  
+  return(data1)
+}
+
+# Executa a função
+dataset <- verifica_missing(dados)
+View(dataset)
