@@ -74,3 +74,18 @@ total_gasto <- dataset %>%
   summarise(Sum = sum(TotalPrice))
 
 View(total_gasto)
+
+# Criando uma data customizada (Natal de 2011)
+max(dataset$InvoiceDate)
+date1 = as.Date.character("25/12/2011", "%d/%m/%Y")
+
+# Função para converter as datas do formato POISxt para o formato Date
+converte_data <- function(x)
+{
+  options(digits.secs = 3)
+  return(as.Date(as.POSIXct(x$InvoiceDate, 'GMT')))
+}
+
+# Executa a função
+dataset$InvoiceDate <- converte_data(dataset)
+View(dataset)
