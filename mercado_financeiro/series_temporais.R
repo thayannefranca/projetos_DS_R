@@ -68,3 +68,10 @@ statNames <- c("Mean", "Standard Deviation", "Skewness", "Kurtosis")
 PETR4.SA.stat <- c(mean(PETR4.SA.ret), sd(PETR4.SA.ret), skewness(PETR4.SA.ret), kurtosis(PETR4.SA.ret))
 names(PETR4.SA.stat) <- statNames
 PETR4.SA.stat
+
+# Salvando os dados em um arquivo .rds (arquivo em formato binário do R)
+# getSymbols("PETR4.SA", src = 'yahoo')
+saveRDS(PETR4.SA, file = "PETR4.SA.rds")
+Ptr = readRDS("PETR4.SA.rds")
+dir()
+head(Ptr)
