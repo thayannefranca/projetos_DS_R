@@ -62,3 +62,9 @@ PETR4.SA.ret <- PETR4.SA.ret[-1]
 plot(PETR4.SA.ret, main = "Fechamento Diário das Ações da Petrobras",
      col = "red", xlab = "Data", ylab = "Retorno", major.ticks = "months",
      minor.ticks = FALSE)
+
+# Calculando algumas medidas estatísticas
+statNames <- c("Mean", "Standard Deviation", "Skewness", "Kurtosis")
+PETR4.SA.stat <- c(mean(PETR4.SA.ret), sd(PETR4.SA.ret), skewness(PETR4.SA.ret), kurtosis(PETR4.SA.ret))
+names(PETR4.SA.stat) <- statNames
+PETR4.SA.stat
