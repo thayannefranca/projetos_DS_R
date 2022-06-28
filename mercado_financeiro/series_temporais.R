@@ -48,3 +48,7 @@ plot(PETR4.SA.Close, main = "Fechamento Diário Ações Petrobras",
 # possuem as bandas mais distantes da média, enquanto mercados menos voláteis possuem as
 # bancas mais próximas da média
 addBBands(n = 20, sd = 2)
+
+# Adicionando o indicador ADX, média 11 do tipo exponencial
+addADX(n = 11, maType = "EMA")
+
