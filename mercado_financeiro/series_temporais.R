@@ -39,3 +39,12 @@ candleChart(PETR4.SA)
 plot(PETR4.SA.Close, main = "Fechamento Diário Ações Petrobras",
      col = "red", xlab = "Data", ylab = "Preço", major.ticks = 'months',
      minor.ticks = FALSE)
+
+
+# Adicionado as bandas de bollinger ao gráfico, com média de 20 períodos e 2 desvios
+# Bollinger Band
+# Como o desvio padrão é uma medida de volatilidade, 
+# Bollinger Bands ajustam-se às condições de mercado. Mercados mais voláteis, 
+# possuem as bandas mais distantes da média, enquanto mercados menos voláteis possuem as
+# bancas mais próximas da média
+addBBands(n = 20, sd = 2)
