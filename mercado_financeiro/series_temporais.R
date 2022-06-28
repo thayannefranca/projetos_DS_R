@@ -30,3 +30,7 @@ View(PETR4.SA)
 PETR4.SA.Close <- PETR4.SA[, "PETR4.SA.Close"]
 is.xts(PETR4.SA.Close)
 head(Cl(PETR4.SA), 5)
+
+# Agora, vamos plotar o gráfico da Petrobras
+# Gráfico de candlestick da Petrobras
+candleChart(PETR4.SA)
