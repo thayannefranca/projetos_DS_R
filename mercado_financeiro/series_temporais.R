@@ -34,3 +34,8 @@ head(Cl(PETR4.SA), 5)
 # Agora, vamos plotar o gráfico da Petrobras
 # Gráfico de candlestick da Petrobras
 candleChart(PETR4.SA)
+
+# Plot do fechamento
+plot(PETR4.SA.Close, main = "Fechamento Diário Ações Petrobras",
+     col = "red", xlab = "Data", ylab = "Preço", major.ticks = 'months',
+     minor.ticks = FALSE)
