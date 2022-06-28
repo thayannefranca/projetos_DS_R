@@ -21,3 +21,12 @@ getSymbols("PETR4.SA", src = "yahoo", from = startDate, to = endDate, auto.assig
 # Checando o tipo de dado retornado
 class(PETR4.SA)
 is.xts(PETR4.SA)
+
+# Mostra os primeiros registros para as ações da Petrobras
+head(PETR4.SA)
+View(PETR4.SA)
+
+# Analisando os dados de fechamento 
+PETR4.SA.Close <- PETR4.SA[, "PETR4.SA.Close"]
+is.xts(PETR4.SA.Close)
+head(Cl(PETR4.SA), 5)
