@@ -52,3 +52,13 @@ addBBands(n = 20, sd = 2)
 # Adicionando o indicador ADX, média 11 do tipo exponencial
 addADX(n = 11, maType = "EMA")
 
+# Calculando logs diários
+PETR4.SA.ret <- diff(log(PETR4.SA.Close), lag = 1)
+
+# Remove valores NA na prosição 1
+PETR4.SA.ret <- PETR4.SA.ret[-1]
+
+# Plotar a taxa de retorno
+plot(PETR4.SA.ret, main = "Fechamento Diário das Ações da Petrobras",
+     col = "red", xlab = "Data", ylab = "Retorno", major.ticks = "months",
+     minor.ticks = FALSE)
